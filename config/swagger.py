@@ -1,23 +1,53 @@
 get_all_spec = {
     "responses": {
         "200": {
-            "description": "Lista de séries retornada com sucesso",
+            "description": "Lista de motos retornada com sucesso",
             "schema": {
                 "type": "array",
                 "items": {
                     "type": "object",
                     "properties": {
                         "id": {"type": "integer"},
-                        "titulo": {"type": "string"},
-                        "noticia": {"type": "string"},
-                        "imagem": {"type": "string"},
-                        "categoria": {"type": "string"},
-                        "data_postagem": {"type": "string"},
-                        "quem_postou": {"type": "string"}
+                        "marca": {"type": "string"},
+                        "modelo": {"type": "string"},
+                        "cilindrada": {"type": "integer"},
+                        "cor": {"type": "string"},
+                        "ano": {"type": "integer"},
+                        "preco": {"type": "number", "format": "float"}
                     }
                 }
             }
         }
+    }
+}
+
+get_by_id_spec = {
+    "parameters": [
+        {
+            "name": "moto_id",
+            "in": "path",
+            "type": "integer",
+            "required": True,
+            "description": "ID da moto a consultar"
+        }
+    ],
+    "responses": {
+        "200": {
+            "description": "Moto encontrada com sucesso",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "id": {"type": "integer"},
+                    "marca": {"type": "string"},
+                    "modelo": {"type": "string"},
+                    "cilindrada": {"type": "integer"},
+                    "cor": {"type": "string"},
+                    "ano": {"type": "integer"},
+                    "preco": {"type": "number", "format": "float"}
+                }
+            }
+        },
+        "404": {"description": "Moto não encontrada"}
     }
 }
 
@@ -30,30 +60,30 @@ insert_spec = {
             "schema": {
                 "type": "object",
                 "properties": {
-                    "id": {"type": "integer"},
-                    "titulo": {"type": "string"},
-                    "noticia": {"type": "string"},
-                    "imagem": {"type": "string"},
-                    "categoria": {"type": "string"},
-                    "data_postagem": {"type": "string"},
-                    "quem_postou": {"type": "string"}
-                }
+                    "marca": {"type": "string"},
+                    "modelo": {"type": "string"},
+                    "cilindrada": {"type": "integer"},
+                    "cor": {"type": "string"},
+                    "ano": {"type": "integer"},
+                    "preco": {"type": "number", "format": "float"}
+                },
+                "required": ["marca", "modelo", "cilindrada", "cor", "ano", "preco"]
             }
         }
     ],
     "responses": {
-        "201": {"description": "Notícia cadastrada com sucesso"}
+        "201": {"description": "Moto cadastrada com sucesso"}
     }
 }
 
 update_spec = {
     "parameters": [
         {
-            "name": "noticia_id",
+            "name": "moto_id",
             "in": "path",
             "type": "integer",
             "required": True,
-            "description": "ID da notícia"
+            "description": "ID da moto"
         },
         {
             "name": "body",
@@ -62,34 +92,34 @@ update_spec = {
             "schema": {
                 "type": "object",
                 "properties": {
-                    "titulo": {"type": "string"},
-                    "noticia": {"type": "string"},
-                    "imagem": {"type": "string"},
-                    "categoria": {"type": "string"},
-                    "data_postagem": {"type": "string"},
-                    "quem_postou": {"type": "string"}
+                    "marca": {"type": "string"},
+                    "modelo": {"type": "string"},
+                    "cilindrada": {"type": "integer"},
+                    "cor": {"type": "string"},
+                    "ano": {"type": "integer"},
+                    "preco": {"type": "number", "format": "float"}
                 }
             }
         }
     ],
     "responses": {
-        "200": {"description": "Notícia atualizada com sucesso"},
-        "404": {"description": "Notícia não encontrada"}
+        "200": {"description": "Moto atualizada com sucesso"},
+        "404": {"description": "Moto não encontrada"}
     }
 }
 
 delete_spec = {
     "parameters": [
         {
-            "name": "noticia_id",
+            "name": "moto_id",
             "in": "path",
             "type": "integer",
             "required": True,
-            "description": "ID da Notícia"
+            "description": "ID da moto"
         }
     ],
     "responses": {
-        "200": {"description": "Notícia removida com sucesso"},
-        "404": {"description": "Notícia não encontrada"}
+        "200": {"description": "Moto removida com sucesso"},
+        "404": {"description": "Moto não encontrada"}
     }
 }

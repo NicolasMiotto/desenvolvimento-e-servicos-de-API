@@ -4,6 +4,6 @@ Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 .\venv\Scripts\Activate.ps1
 
-pip install Flask mysql-connector-python
+pip install Flask mysql-connector-python flasgger
 
 pip install flasgger
